@@ -1,0 +1,14 @@
+{
+  "accepted": {
+    "filled": 2263,
+    "regular": 2263
+  },
+  "examples": {
+    "filled": [],
+    "regular": []
+  },
+  "rejected": {
+    "filled": {},
+    "regular": {}
+  }
+}

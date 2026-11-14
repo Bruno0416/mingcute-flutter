@@ -1,0 +1,16 @@
+name: mingcute_icons_example
+publish_to: none
+description: Minimal MingCute Icons Flutter app.
+version: 0.1.0
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mingcute_icons:
+    path: ../
+
+flutter:
+  uses-material-design: true

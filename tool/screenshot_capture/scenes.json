@@ -1,0 +1,12 @@
+{
+  "viewport": { "width": 1280, "height": 800 },
+  "deviceScaleFactor": 2,
+  "scenes": [
+    { "name": "hero-dark", "title": "MingCute Icons for Flutter in dark mode, Regular and Filled", "params": { "capture": "hero", "theme": "dark", "style": "both", "size": "36", "cols": "6" } },
+    { "name": "hero-light", "title": "MingCute Icons for Flutter in light mode, Regular and Filled", "params": { "capture": "hero", "theme": "light", "style": "both", "size": "36", "cols": "6" } },
+    { "name": "regular", "title": "Core Regular icons", "params": { "capture": "regular", "theme": "dark", "style": "regular", "size": "40", "cols": "6" } },
+    { "name": "filled", "title": "Core Filled icons", "params": { "capture": "filled", "theme": "dark", "style": "filled", "size": "40", "cols": "6" } },
+    { "name": "comparison", "title": "Regular and Filled pairs by use case", "params": { "capture": "comparison", "theme": "dark", "size": "32" } },
+    { "name": "detail", "title": "Icons at 16 to 64 px on dark and light surfaces", "params": { "capture": "detail", "theme": "dark" } }
+  ]
+}

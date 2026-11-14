@@ -1,0 +1,27 @@
+{
+  "added": {
+    "filled": [],
+    "regular": []
+  },
+  "counts": {
+    "filled": 2263,
+    "regular": 2263
+  },
+  "generated": {},
+  "modified": {
+    "filled": [],
+    "regular": []
+  },
+  "monochromeApproximations": {
+    "filled": 5,
+    "regular": 4
+  },
+  "provenanceChanged": false,
+  "removed": {
+    "filled": [],
+    "regular": []
+  },
+  "reused": {},
+  "skipped": true,
+  "sourceRevision": "9dc7d3ad074fb16477096a6a8109a6467d0e2fe3"
+}

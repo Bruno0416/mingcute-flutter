@@ -1,0 +1,29 @@
+name: mingcute_icons_preview
+publish_to: none
+description: Local preview of MingCute regular and filled TTF rendering.
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mingcute_icons:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    # Preview-only Roboto (Apache-2.0, copied from the Flutter SDK) so that
+    # screenshots never depend on network font fallbacks.
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500

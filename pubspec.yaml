@@ -1,0 +1,49 @@
+name: mingcute_icons
+description: Unofficial MingCute Core icon fonts for Flutter, with native Regular and Filled IconData constants.
+version: 0.1.0
+homepage: https://github.com/Bruno0416/mingcute-flutter
+repository: https://github.com/Bruno0416/mingcute-flutter
+issue_tracker: https://github.com/Bruno0416/mingcute-flutter/issues
+
+topics:
+  - icons
+  - icon-font
+  - flutter
+  - ui
+  - design
+
+screenshots:
+  - description: MingCute Icons in dark mode, Regular and Filled side by side
+    path: doc/assets/screenshots/hero-dark.png
+  - description: The same icons in light mode
+    path: doc/assets/screenshots/hero-light.png
+  - description: Core Regular icons
+    path: doc/assets/screenshots/regular.png
+  - description: Core Filled icons
+    path: doc/assets/screenshots/filled.png
+  - description: Regular and Filled pairs by use case
+    path: doc/assets/screenshots/comparison.png
+  - description: Icons from 16 to 64 px on dark and light surfaces
+    path: doc/assets/screenshots/detail.png
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+  flutter: '>=3.24.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  fonts:
+    - family: MingCuteRegular
+      fonts:
+        - asset: assets/fonts/MingCuteRegular.ttf
+    - family: MingCuteFilled
+      fonts:
+        - asset: assets/fonts/MingCuteFilled.ttf

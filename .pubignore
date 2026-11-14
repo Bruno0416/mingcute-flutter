@@ -1,0 +1,39 @@
+# Local agent context and reference snapshots
+/.agents/
+/.serena/
+/AGENTS.md
+/**/AGENTS.md
+/PROMPT_*.md
+*.zip
+*.patch
+
+# Repository tooling, previews, tests and CI.
+/.github/
+/preview/
+/tests/
+/tool/
+/doc/assets/screenshots/manifest.json
+
+# Environments, caches and build output.
+/.venv/
+/.dart_tool/
+/.idea/
+/.vscode/
+/build/
+/coverage/
+/*.iml
+/pubspec.lock
+/example/pubspec.lock
+/example/.dart_tool/
+/example/build/
+__pycache__/
+node_modules/
+.cache/
+
+# Secrets and credentials.
+gha-creds-*.json
+.env
+.env.*
+*.pem
+*.key
+/pyproject.toml
