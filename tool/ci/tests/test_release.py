@@ -19,12 +19,12 @@ class PlanTest(unittest.TestCase):
     def setUp(self):
         temp = tempfile.TemporaryDirectory()
         self.addCleanup(temp.cleanup)
-        self.root = make_project(Path(temp.name), extra='repository: https://github.com/o/mingcute_icons\n'
-                                 'issue_tracker: https://github.com/o/mingcute_icons/issues\n'
-                                 'homepage: https://github.com/o/mingcute_icons')
+        self.root = make_project(Path(temp.name), extra='repository: https://github.com/o/mingcute_flutter\n'
+                                 'issue_tracker: https://github.com/o/mingcute_flutter/issues\n'
+                                 'homepage: https://github.com/o/mingcute_flutter')
 
     def plan(self, *, state='absent', main=SHA, tag=None, ancestor=True, matches=False, exists=False, tag_version='0.2.0'):
-        git_show = subprocess.CompletedProcess([], 0, f'name: mingcute_icons\nversion: {tag_version}\n', '')
+        git_show = subprocess.CompletedProcess([], 0, f'name: mingcute_flutter\nversion: {tag_version}\n', '')
         with patch.object(release, 'require_main_push', return_value=SHA), \
              patch.object(release.guard, 'check_local_context_paths'), \
              patch.object(release, 'current_main', return_value=main), \
@@ -64,7 +64,7 @@ class PlanTest(unittest.TestCase):
 
     def test_missing_public_metadata_blocks_before_publishing(self):
         spec = self.root / 'pubspec.yaml'
-        spec.write_text(spec.read_text().replace('repository: https://github.com/o/mingcute_icons\n', ''))
+        spec.write_text(spec.read_text().replace('repository: https://github.com/o/mingcute_flutter\n', ''))
         with self.assertRaisesRegex(ValueError, 'public metadata'):
             self.plan()
 

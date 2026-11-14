@@ -24,7 +24,7 @@ echo "dart $*" >> "$FAKE_LOG"
 case "$1 $2 $3" in
   "pub global activate") exit "${FAKE_ACTIVATE_EXIT:-0}" ;;
   "pub global list") echo "pana ${FAKE_PANA_VERSION:-0.23.19}"; exit 0 ;;
-  "pub global run") if [ -n "${FAKE_EXPECT_PACKAGE:-}" ]; then test "$(cat pubspec.yaml)" = 'name: mingcute_icons' || exit 98; fi; [ -n "${FAKE_PANA_JSON:-}" ] && cat "$FAKE_PANA_JSON"; echo 'pana log line' >&2; exit "${FAKE_PANA_EXIT:-0}" ;;
+  "pub global run") if [ -n "${FAKE_EXPECT_PACKAGE:-}" ]; then test "$(cat pubspec.yaml)" = 'name: mingcute_flutter' || exit 98; fi; [ -n "${FAKE_PANA_JSON:-}" ] && cat "$FAKE_PANA_JSON"; echo 'pana log line' >&2; exit "${FAKE_PANA_EXIT:-0}" ;;
 esac
 exit 99
 """
@@ -170,7 +170,7 @@ class RunPanaTest(unittest.TestCase):
             archive = self.temp / 'valid.tar.gz'
             with tarfile.open(archive, 'w:gz') as tar:
                 for name in REQUIRED_FILES:
-                    data = b'name: mingcute_icons' if name == 'pubspec.yaml' else b'fixture'
+                    data = b'name: mingcute_flutter' if name == 'pubspec.yaml' else b'fixture'
                     member = tarfile.TarInfo(prefix + name)
                     member.size = len(data)
                     tar.addfile(member, io.BytesIO(data))

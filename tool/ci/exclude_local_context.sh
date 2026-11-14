@@ -16,7 +16,7 @@ PATTERNS=(
   '/**/AGENTS.md'
   '/PROMPT_*.md'
   '/snapshots/'
-  '/mingcute_icons-snapshot-*.zip'
+  '/mingcute_flutter-snapshot-*.zip'
   '/morph_expressive-snapshot-*.zip'
 )
 for pattern in "${PATTERNS[@]}"; do
@@ -28,6 +28,6 @@ while IFS= read -r -d '' file; do
   git rm --cached --quiet -- "$file"
   printf 'Removed local-context entry from index (kept on disk): %q\n' "$file"
 done < <(git ls-files -z --cached -- .agents .serena AGENTS.md '**/AGENTS.md' \
-  ':(top,glob)PROMPT_*.md' snapshots ':(top,glob)mingcute_icons-snapshot-*.zip' \
+  ':(top,glob)PROMPT_*.md' snapshots ':(top,glob)mingcute_flutter-snapshot-*.zip' \
   ':(top,glob)morph_expressive-snapshot-*.zip')
 echo "Local context excluded via $EXCLUDE"

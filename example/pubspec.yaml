@@ -1,4 +1,4 @@
-name: mingcute_icons_example
+name: mingcute_flutter_example
 publish_to: none
 description: Minimal MingCute Icons Flutter app.
 version: 0.1.0
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  mingcute_icons:
+  mingcute_flutter:
     path: ../
 
 flutter:

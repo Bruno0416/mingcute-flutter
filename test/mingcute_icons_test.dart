@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mingcute_icons/mingcute_icons.dart';
+import 'package:mingcute_flutter/mingcute_icons.dart';
 
 void main() {
   test('Regular and Filled expose IconData from their own font families', () {
@@ -8,8 +8,8 @@ void main() {
     expect(MingCute.filled.home_1, isA<IconData>());
     expect(MingCute.regular.home_1.fontFamily, 'MingCuteRegular');
     expect(MingCute.filled.home_1.fontFamily, 'MingCuteFilled');
-    expect(MingCute.regular.home_1.fontPackage, 'mingcute_icons');
-    expect(MingCute.filled.home_1.fontPackage, 'mingcute_icons');
+    expect(MingCute.regular.home_1.fontPackage, 'mingcute_flutter');
+    expect(MingCute.filled.home_1.fontPackage, 'mingcute_flutter');
   });
 
   test('the same name shares one stable codepoint across both styles', () {
@@ -47,8 +47,8 @@ void main() {
     expect(
         texts.map((t) => t.text.style?.fontFamily),
         containsAll([
-          'packages/mingcute_icons/MingCuteRegular',
-          'packages/mingcute_icons/MingCuteFilled'
+          'packages/mingcute_flutter/MingCuteRegular',
+          'packages/mingcute_flutter/MingCuteFilled'
         ]));
     expect(texts.first.text.style?.fontSize, 40);
     expect(texts.first.text.style?.color, Colors.teal);

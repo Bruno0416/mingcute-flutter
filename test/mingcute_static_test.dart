@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mingcute_icons/mingcute_static.dart';
+import 'package:mingcute_flutter/mingcute_static.dart';
 
 void main() {
   test('static providers preserve native families and registered codepoints',
@@ -18,7 +18,7 @@ void main() {
       'MingCuteFilled',
       'MingCuteFilled',
     ]);
-    expect(icons.every((i) => i.fontPackage == 'mingcute_icons'), isTrue);
+    expect(icons.every((i) => i.fontPackage == 'mingcute_flutter'), isTrue);
   });
 
   testWidgets('static constants work with IconButton and IconTheme',

@@ -1,6 +1,6 @@
 # R1.2 — Clean rebuild verification (before enabling GitHub Actions)
 
-Run this **from the `mingcute_icons` project**, after applying the overlay:
+Run this **from the `mingcute_flutter` project**, after applying the overlay:
 
 ```bash
 source .venv/bin/activate

@@ -37,4 +37,4 @@ flutter test
   flutter analyze
   flutter test
 )
-printf '%s\n' 'mingcute_icons: all checks completed.'
+printf '%s\n' 'mingcute_flutter: all checks completed.'

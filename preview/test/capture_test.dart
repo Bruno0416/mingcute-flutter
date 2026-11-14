@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mingcute_icons_preview/capture.dart';
-import 'package:mingcute_icons_preview/generated_catalog.dart';
+import 'package:mingcute_flutter_preview/capture.dart';
+import 'package:mingcute_flutter_preview/generated_catalog.dart';
 
 void main() {
   group('CaptureConfig.parse', () {

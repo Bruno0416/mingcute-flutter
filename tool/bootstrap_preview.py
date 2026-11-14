@@ -33,7 +33,7 @@ def prepare(root: Path = ROOT, *, device: str = 'linux', launch: bool = True) ->
         raise FileNotFoundError('Preview sources are missing.')
     if not (preview / 'linux/CMakeLists.txt').exists() or not (preview / 'web/index.html').exists():
         run_command(['flutter', 'create', '--no-pub', '--platforms=linux,web',
-                     '--project-name=mingcute_icons_preview', '.'], preview)
+                     '--project-name=mingcute_flutter_preview', '.'], preview)
     run_command(['flutter', 'pub', 'get'], preview)
     if launch:
         run_command(['flutter', 'run', '-d', device], preview)

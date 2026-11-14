@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mingcute_icons/mingcute_static.dart';
+import 'package:mingcute_flutter/mingcute_static.dart';
 
 /// Optimized-size alternative: do not import the getter library in this app.
 void main() => runApp(const MaterialApp(home: StaticExampleScreen()));

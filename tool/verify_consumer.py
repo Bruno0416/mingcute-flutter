@@ -24,7 +24,7 @@ def inspect_fonts(package: Path, web: Path, manifest: dict, selection: dict) -> 
     evidence, passed = {}, True
     for style, family in FAMILIES.items():
         candidates = list(web.rglob(f'{family}.ttf'))
-        expected_path = web / f'assets/packages/mingcute_icons/assets/fonts/{family}.ttf'
+        expected_path = web / f'assets/packages/mingcute_flutter/assets/fonts/{family}.ttf'
         if len(candidates) != 1 or candidates[0] != expected_path:
             raise ValueError(f'{family}: missing or ambiguous release font: {candidates}')
         original = package / f'assets/fonts/{family}.ttf'
@@ -60,7 +60,7 @@ def candidate_library(manifest: dict, kind: str) -> str:
         else:
             lines.append(f'  static const {style} = (')
         for name, record in sorted(manifest['icons'][style].items()):
-            value = f"IconData(0x{int(record['codepoint'], 16):x}, fontFamily: '{family}', fontPackage: 'mingcute_icons')"
+            value = f"IconData(0x{int(record['codepoint'], 16):x}, fontFamily: '{family}', fontPackage: 'mingcute_flutter')"
             lines.append(f'  static const {name} = {value};' if kind == 'static-const' else f'    {name}: {value},')
         lines.append('}' if kind == 'static-const' else '  );')
     if kind == 'record':
@@ -111,13 +111,13 @@ def verify(report: Path, *, experiment: str = 'primary', scenario: str | None = 
             (package / 'lib/mingcute_icons.dart').write_text(candidate_library(manifest, experiment))
         (app / 'pubspec.yaml').write_text(
             'name: consumer\npublish_to: none\nenvironment:\n  sdk: ">=3.5.0 <4.0.0"\n'
-            'dependencies:\n  flutter:\n    sdk: flutter\n  mingcute_icons:\n'
+            'dependencies:\n  flutter:\n    sdk: flutter\n  mingcute_flutter:\n'
             f'    path: {json.dumps(str(package))}\n'
             'dev_dependencies:\n  flutter_test:\n    sdk: flutter\n  flutter_lints: ^6.0.0\n'
             'flutter:\n  uses-material-design: true\n')
         source = (ROOT / 'example/lib/main.dart').read_text()
-        api_import = "import 'package:mingcute_icons/mingcute_icons.dart';"
-        static_import = "import 'package:mingcute_icons/mingcute_static.dart';"
+        api_import = "import 'package:mingcute_flutter/mingcute_icons.dart';"
+        static_import = "import 'package:mingcute_flutter/mingcute_static.dart';"
         imports = api_import
         references = [f'MingCute.{style}.{name}' for style, names in SELECTION.items() for name in names]
         if scenario in ('static-subsetting', 'mixed-contract'):
@@ -147,7 +147,7 @@ void main() {
     expect(texts.length, 4);
     for (var i = 0; i < 4; i++) {
       expect(texts[i].text.toPlainText(), String.fromCharCode(expected[i].codePoint));
-      expect(texts[i].text.style?.fontFamily, 'packages/mingcute_icons/${expected[i].fontFamily}');
+      expect(texts[i].text.style?.fontFamily, 'packages/mingcute_flutter/${expected[i].fontFamily}');
     }
     expect(tester.takeException(), isNull);
   });

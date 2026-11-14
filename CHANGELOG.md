@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `mingcute_icons` are documented here. The project follows
+All notable changes to `mingcute_flutter` are documented here. The project follows
 [Semantic Versioning](https://semver.org/); see [doc/RELEASE.md](doc/RELEASE.md)
 for how icon changes map to version parts.
 

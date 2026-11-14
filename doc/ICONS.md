@@ -36,7 +36,7 @@ the complete catalogue, so its full fonts are expected.
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:mingcute_icons/mingcute_static.dart';
+import 'package:mingcute_flutter/mingcute_static.dart';
 
 const home = Icon(MingCuteRegularConst.home_1);
 const heart = Icon(MingCuteFilledConst.heart);

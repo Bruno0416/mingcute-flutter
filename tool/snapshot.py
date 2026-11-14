@@ -3,7 +3,7 @@
 
 Usage:
     python tool/snapshot.py
-    python tool/snapshot.py --output ~/Downloads/mingcute_icons-snapshot-20261113-230126.zip
+    python tool/snapshot.py --output ~/Downloads/mingcute_flutter-snapshot-20261113-230126.zip
 
 Requires Python 3.10+ and only the standard library.
 """
@@ -126,7 +126,7 @@ def main() -> None:
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
     timestamp = datetime.now().astimezone().strftime("%Y%m%d-%H%M%S")
-    output = args.output or (root / "snapshots" / f"mingcute_icons-snapshot-{timestamp}.zip")
+    output = args.output or (root / "snapshots" / f"mingcute_flutter-snapshot-{timestamp}.zip")
     count, total_bytes = create_snapshot(root, output)
     archive = output.expanduser().resolve()
     print(f"Snapshot: {archive}")

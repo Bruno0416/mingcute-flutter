@@ -55,7 +55,7 @@ class MetadataTest(unittest.TestCase):
 
     def test_identity_must_be_exact(self):
         root = self.project()
-        spec = (root / 'pubspec.yaml').read_text().replace('name: mingcute_icons', 'name: mingcute_icons_kit')
+        spec = (root / 'pubspec.yaml').read_text().replace('name: mingcute_flutter', 'name: mingcute_icons_kit')
         (root / 'pubspec.yaml').write_text(spec)
         with self.assertRaisesRegex(ValueError, 'identity'):
             guard.read_metadata(root)
@@ -66,9 +66,9 @@ class MetadataTest(unittest.TestCase):
         self.assertTrue(any('repository' in w for w in warnings))
         with self.assertRaisesRegex(ValueError, 'public metadata incomplete'):
             guard.pubspec_report(root, require_public_urls=True)
-        complete = self.project(extra='repository: https://github.com/o/mingcute_icons\n'
-                                      'issue_tracker: https://github.com/o/mingcute_icons/issues\n'
-                                      'homepage: https://github.com/o/mingcute_icons')
+        complete = self.project(extra='repository: https://github.com/o/mingcute_flutter\n'
+                                      'issue_tracker: https://github.com/o/mingcute_flutter/issues\n'
+                                      'homepage: https://github.com/o/mingcute_flutter')
         self.assertEqual([], guard.pubspec_report(complete, require_public_urls=True))
 
     def test_topics_screenshots_and_urls_are_validated(self):

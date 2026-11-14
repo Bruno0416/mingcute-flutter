@@ -17,7 +17,7 @@ class ReadmeMetadataTest(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         (self.root / 'tool').mkdir()
-        (self.root / 'pubspec.yaml').write_text('name: mingcute_icons\nversion: 0.1.0\n')
+        (self.root / 'pubspec.yaml').write_text('name: mingcute_flutter\nversion: 0.1.0\n')
         self.manifest = {'sourceRevision': 'a' * 40, 'upstream': {
             'repository': 'mingcute-design/mingcute-icons', 'version': '3.1.0', 'versionSource': 'release.json'},
             'icons': {'regular': {'home_1': {}}, 'filled': {'home_1': {}}}}
@@ -68,7 +68,7 @@ class ReadmeMetadataTest(unittest.TestCase):
     def test_wrapper_only_change_does_not_reassign_upstream_version(self):
         from readme_metadata import update
         original = (self.root / 'tool/manifest.json').read_bytes()
-        (self.root / 'pubspec.yaml').write_text('name: mingcute_icons\nversion: 0.2.0\n')
+        (self.root / 'pubspec.yaml').write_text('name: mingcute_flutter\nversion: 0.2.0\n')
         update(self.root, write=True)
         self.assertEqual(original, (self.root / 'tool/manifest.json').read_bytes())
         text = (self.root / 'README.md').read_text()

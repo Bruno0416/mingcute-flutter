@@ -64,7 +64,7 @@ class DocsGuardTest(unittest.TestCase):
         self.assertEqual([], self.errors())
 
     def test_credits_install_and_counts_are_required(self):
-        self.edit('README.md', 'flutter pub add mingcute_icons', 'dart pub add other')
+        self.edit('README.md', 'flutter pub add mingcute_flutter', 'dart pub add other')
         self.assertTrue(any('install command' in e for e in self.errors()))
 
     def test_stale_counts_are_rejected(self):

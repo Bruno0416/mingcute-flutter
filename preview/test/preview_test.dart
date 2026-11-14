@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/services.dart';
-import 'package:mingcute_icons_preview/main.dart' as app;
+import 'package:mingcute_flutter_preview/main.dart' as app;
 
 void main() {
   testWidgets('renders searchable icon catalogue', (tester) async {

@@ -43,8 +43,8 @@ class LocalContextTest(unittest.TestCase):
         (self.root / 'PROMPT_MINGCUTE_R2.md').write_text('p')
         (self.root / 'morph_expressive-snapshot-1.zip').write_bytes(b'zip')
         for name in ('PROMPT_MINGCUTE_R2_1_PANA_GATE.md', 'PROMPT_FUTURE.md',
-                     'snapshots/mingcute_icons-snapshot-20261113.zip',
-                     'mingcute_icons-snapshot-future.zip'):
+                     'snapshots/mingcute_flutter-snapshot-20261113.zip',
+                     'mingcute_flutter-snapshot-future.zip'):
             path = self.root / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text('local')
@@ -62,8 +62,8 @@ class LocalContextTest(unittest.TestCase):
         for path in ('.agents/CONTEXT.md', 'AGENTS.md', 'sub/AGENTS.md', 'PROMPT_MINGCUTE_R2.md',
                      'morph_expressive-snapshot-1.zip', 'PROMPT_FUTURE.md',
                      'PROMPT_MINGCUTE_R2_1_PANA_GATE.md',
-                     'snapshots/mingcute_icons-snapshot-20261113.zip',
-                     'mingcute_icons-snapshot-future.zip'):
+                     'snapshots/mingcute_flutter-snapshot-20261113.zip',
+                     'mingcute_flutter-snapshot-future.zip'):
             self.assertEqual(0, self.git('check-ignore', '-q', path, check=False).returncode, path)
         status = self.git('status', '--short').stdout
         for hidden in ('.agents', 'AGENTS', 'PROMPT', 'snapshot'):

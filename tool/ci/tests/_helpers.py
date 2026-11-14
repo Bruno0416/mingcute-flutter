@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[3]
 if str(TOOL) not in sys.path:
     sys.path.insert(0, str(TOOL))
 
-PUBSPEC = """name: mingcute_icons
+PUBSPEC = """name: mingcute_flutter
 description: Unofficial MingCute Core icon fonts for Flutter, with native Regular and Filled IconData constants.
 version: {version}
 {extra}

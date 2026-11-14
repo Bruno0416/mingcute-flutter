@@ -1,7 +1,7 @@
 // GENERATED. Do not edit by hand.
 // SPDX-License-Identifier: Apache-2.0
 import 'package:flutter/widgets.dart';
-import 'package:mingcute_icons/mingcute_icons.dart';
+import 'package:mingcute_flutter/mingcute_icons.dart';
 
 class PreviewIcon {
   const PreviewIcon(this.name, {this.regular, this.filled});

@@ -1,4 +1,4 @@
-name: mingcute_icons_preview
+name: mingcute_flutter_preview
 publish_to: none
 description: Local preview of MingCute regular and filled TTF rendering.
 version: 0.1.0+1
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  mingcute_icons:
+  mingcute_flutter:
     path: ../
 
 dev_dependencies:

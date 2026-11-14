@@ -60,13 +60,13 @@ def check(root: Path = ROOT) -> tuple[list[str], list[str]]:
         for line_no, line in enumerate(path.read_text('utf-8', errors='replace').splitlines(), 1):
             if LEGACY.search(line):
                 errors.append(f'{name}:{line_no}: inherited/legacy identity: {line.strip()[:100]}')
-    if not re.search(r'(?m)^name:\s*mingcute_icons\s*$', pubspec):
-        errors.append('pubspec.yaml name must be exactly mingcute_icons')
+    if not re.search(r'(?m)^name:\s*mingcute_flutter\s*$', pubspec):
+        errors.append('pubspec.yaml name must be exactly mingcute_flutter')
 
     # 2. README essentials
     readme = (root / 'README.md').read_text('utf-8')
-    for needle, why in (('flutter pub add mingcute_icons', 'install command'),
-                        ("import 'package:mingcute_icons/mingcute_icons.dart';", 'import'),
+    for needle, why in (('flutter pub add mingcute_flutter', 'install command'),
+                        ("import 'package:mingcute_flutter/mingcute_icons.dart';", 'import'),
                         ('https://github.com/mingcute-design/mingcute-icons', 'credit link to MingCute Design'),
                         ('MingCute Design', 'credit to MingCute Design'),
                         ('Apache', 'upstream licence mention'),

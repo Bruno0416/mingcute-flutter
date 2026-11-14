@@ -23,7 +23,7 @@ class ConsumerEvidenceTest(unittest.TestCase):
         run(ROOT / 'tool/tests/fixtures/upstream', self.package)
         self.manifest = json.loads((self.package / 'tool/manifest.json').read_text())
         self.selection = {s: ('home_1', 'search_2') for s in STYLES}
-        self.fonts = self.web / 'assets/packages/mingcute_icons/assets/fonts'
+        self.fonts = self.web / 'assets/packages/mingcute_flutter/assets/fonts'
         self.fonts.mkdir(parents=True)
         for _, family in STYLES.values():
             shutil.copy(self.package / f'assets/fonts/{family}.ttf', self.fonts)

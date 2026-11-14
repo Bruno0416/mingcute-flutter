@@ -58,7 +58,7 @@ PY
       cat > test/consumer_test.dart <<'DART'
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mingcute_icons/mingcute_icons.dart';
+import 'package:mingcute_flutter/mingcute_icons.dart';
 
 void main() {
   testWidgets('consumer renders Regular and Filled IconData', (tester) async {
@@ -68,7 +68,7 @@ void main() {
     ])));
     expect(find.byType(Icon), findsNWidgets(2));
     expect(MingCute.regular.home_1.fontFamily, 'MingCuteRegular');
-    expect(MingCute.filled.home_1.fontPackage, 'mingcute_icons');
+    expect(MingCute.filled.home_1.fontPackage, 'mingcute_flutter');
   });
 }
 DART

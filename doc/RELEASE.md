@@ -34,10 +34,10 @@ python tool/ci/check_markdown_links.py
 python tool/ci/release_guard.py metadata
 python tool/ci/release_guard.py check-local-context   # needs a Git checkout
 dart pub publish --dry-run
-dart pub publish --to-archive=/tmp/mingcute-icons-package.tar.gz   # writes a file, uploads nothing
-python tool/ci/release_guard.py archive-files --archive /tmp/mingcute-icons-package.tar.gz
+dart pub publish --to-archive=/tmp/mingcute-flutter-package.tar.gz   # writes a file, uploads nothing
+python tool/ci/release_guard.py archive-files --archive /tmp/mingcute-flutter-package.tar.gz
 bash tool/ci/check_pana_tools.sh
-bash tool/ci/run_pana.sh /tmp/pana.json /tmp/mingcute-icons-package.tar.gz
+bash tool/ci/run_pana.sh /tmp/pana.json /tmp/mingcute-flutter-package.tar.gz
 ```
 
 The pana gate demands `grantedPoints == maxPoints == 160`: a missing, partial or

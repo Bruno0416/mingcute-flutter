@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Block provisional-release labels accidentally introduced in mingcute_icons artifacts.
+"""Block provisional-release labels accidentally introduced in mingcute_flutter artifacts.
 
 Usage: --all (working checkout), --staged (Git index), --revision REV (exact commit).
 The policy and checker/test fixtures are exempt so they can describe patterns.

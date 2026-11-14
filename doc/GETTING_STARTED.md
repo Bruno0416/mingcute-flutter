@@ -1,12 +1,12 @@
 # Getting started
 
 ```bash
-flutter pub add mingcute_icons
+flutter pub add mingcute_flutter
 ```
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:mingcute_icons/mingcute_icons.dart';
+import 'package:mingcute_flutter/mingcute_icons.dart';
 
 class Buttons extends StatelessWidget {
   const Buttons({super.key});
@@ -36,7 +36,7 @@ For optimized release size, use the independent static API instead:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:mingcute_icons/mingcute_static.dart';
+import 'package:mingcute_flutter/mingcute_static.dart';
 
 const home = Icon(MingCuteRegularConst.home_1);
 const heart = Icon(MingCuteFilledConst.heart);

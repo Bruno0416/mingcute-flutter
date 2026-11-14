@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SemVer helper for mingcute_icons: check, suggest and (explicitly) bump.
+"""SemVer helper for mingcute_flutter: check, suggest and (explicitly) bump.
 
   version.py check                         pubspec <-> CHANGELOG consistency (read-only)
   version.py suggest --baseline OLD.json   recommend patch/minor/major from the icon API diff

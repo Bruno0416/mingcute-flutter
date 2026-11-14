@@ -29,14 +29,14 @@ no SVG runtime or custom rendering widget is required.
 Add MingCute Icons to your Flutter project:
 
 ```bash
-flutter pub add mingcute_icons
+flutter pub add mingcute_flutter
 ```
 
 Or add the dependency directly to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  mingcute_icons: ^0.1.0
+  mingcute_flutter: ^0.1.0
 ```
 
 ## Quick start
@@ -45,7 +45,7 @@ dependencies:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:mingcute_icons/mingcute_icons.dart';
+import 'package:mingcute_flutter/mingcute_icons.dart';
 
 class Example extends StatelessWidget {
   const Example({super.key});
@@ -71,7 +71,7 @@ constants: write `Icon(...)`, not `const Icon(...)`. See [the API guide](doc/ICO
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:mingcute_icons/mingcute_static.dart';
+import 'package:mingcute_flutter/mingcute_static.dart';
 
 const home = Icon(MingCuteRegularConst.home_1);
 const heart = Icon(MingCuteFilledConst.heart);

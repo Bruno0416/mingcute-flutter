@@ -1,6 +1,6 @@
 # MingCute Icons Gallery
 
-Development gallery for the [mingcute_icons Flutter package](../README.md), not
+Development gallery for the [mingcute_flutter Flutter package](../README.md), not
 an independent application intended for publication. Icon artwork is by
 MingCute Design; this wrapper and gallery are unofficial.
 

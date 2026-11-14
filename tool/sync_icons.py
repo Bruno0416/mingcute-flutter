@@ -34,7 +34,7 @@ from upstream_metadata import provenance
 
 ROOT = Path(__file__).resolve().parent.parent
 REPO_URL = 'https://github.com/mingcute-design/mingcute-icons.git'
-PACKAGE = 'mingcute_icons'
+PACKAGE = 'mingcute_flutter'
 VERSION = 5
 API_VERSION = 1  # Dart-only changes must not invalidate the font pipeline.
 START = 0xE001

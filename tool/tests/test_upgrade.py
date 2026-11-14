@@ -47,10 +47,10 @@ class UpgradeTest(unittest.TestCase):
             new.unlink()
             generated = self.out / f'lib/src/generated/{style}_icons.g.dart'
             generated.write_text(generated.read_text().replace("part of '../../mingcute_icons.dart';", "part of '../../mingcute_icons_kit.dart';")
-                                 .replace("fontPackage: 'mingcute_icons'", "fontPackage: 'mingcute_icons_kit'")
+                                 .replace("fontPackage: 'mingcute_flutter'", "fontPackage: 'mingcute_icons_kit'")
                                  .replace(family, LEGACY_FAMILIES[style]))
         cat = self.out / 'preview/lib/generated_catalog.dart'
-        cat.write_text(cat.read_text().replace('mingcute_icons/mingcute_icons.dart','mingcute_icons_kit/mingcute_icons_kit.dart'))
+        cat.write_text(cat.read_text().replace('mingcute_flutter/mingcute_icons.dart','mingcute_icons_kit/mingcute_icons_kit.dart'))
         prior = json.loads((self.out / 'tool/manifest.json').read_text())
         for style in STYLES:
             prior['artifactSha256'][style] = sha256((self.out / 'assets/fonts' / f'{LEGACY_FAMILIES[style]}.ttf').read_bytes())

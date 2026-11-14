@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed checks and changelog release notes for mingcute_icons publishing.
+"""Fail-closed checks and changelog release notes for mingcute_flutter publishing.
 
 Metadata and archive-file checks are local; registry commands use HTTPS.
 Exit code for 'published': 0 = version exists, 10 = not published, 1 = error.
@@ -22,7 +22,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[2]
 VERSION_RE = re.compile(r"\d+\.\d+\.\d+\Z")
 PUBSPEC_VERSION = re.compile(r"(?m)^version:\s*([^\s#]+)\s*(?:#.*)?$")
-PACKAGE = 'mingcute_icons'
+PACKAGE = 'mingcute_flutter'
 TOPICS_MAX = 5
 SCREENSHOTS_MAX = 10
 LOCAL_CONTEXT_PARTS = {'.agents', '.serena'}

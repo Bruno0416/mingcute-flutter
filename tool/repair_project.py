@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-time, repeatable migration from mingcute_icons_kit to mingcute_icons.
+"""One-time, repeatable migration from mingcute_icons_kit to mingcute_flutter.
 
 Keeps the entire locally generated icon catalogue, stable codepoints, and glyphs.
 Does not fetch the network or regenerate any SVGs. The original font files are
@@ -16,7 +16,7 @@ from fontTools.ttLib import TTFont
 from sync_icons import ROOT, STYLES, dump_json, sha256, write_if_changed
 
 OLD_PACKAGE = 'mingcute_icons_kit'
-NEW_PACKAGE = 'mingcute_icons'
+NEW_PACKAGE = 'mingcute_flutter'
 LEGACY_FAMILIES = {'regular': 'MingCuteKitRegular', 'filled': 'MingCuteKitFilled'}
 
 
@@ -26,10 +26,10 @@ def assert_configuration(root: Path) -> None:
     for path in (root_pubspec, preview_pubspec):
         if not path.is_file():
             raise FileNotFoundError(f'Missing {path}')
-    if not re.search(r'^name:\s*mingcute_icons\s*$', root_pubspec.read_text('utf8'), re.M):
-        raise RuntimeError('Package pubspec must declare name: mingcute_icons. Apply the overlay first.')
-    if not re.search(r'^  mingcute_icons:\s*$', preview_pubspec.read_text('utf8'), re.M):
-        raise RuntimeError('preview/pubspec.yaml must depend on mingcute_icons. Apply the overlay first.')
+    if not re.search(r'^name:\s*mingcute_flutter\s*$', root_pubspec.read_text('utf8'), re.M):
+        raise RuntimeError('Package pubspec must declare name: mingcute_flutter. Apply the overlay first.')
+    if not re.search(r'^  mingcute_flutter:\s*$', preview_pubspec.read_text('utf8'), re.M):
+        raise RuntimeError('preview/pubspec.yaml must depend on mingcute_flutter. Apply the overlay first.')
 
 
 def migrate_font(old: Path, new: Path, old_family: str, new_family: str, backup: Path) -> bool:
@@ -95,8 +95,8 @@ def migrate(root: Path = ROOT) -> dict:
             raise FileNotFoundError(f'Missing local generated data: {path}')
         content = path.read_text('utf8')
         migrated = (content.replace('mingcute_icons_kit.dart', 'mingcute_icons.dart')
-                           .replace('package:mingcute_icons_kit/', 'package:mingcute_icons/')
-                           .replace("fontPackage: 'mingcute_icons_kit'", "fontPackage: 'mingcute_icons'")
+                           .replace('package:mingcute_icons_kit/', 'package:mingcute_flutter/')
+                           .replace("fontPackage: 'mingcute_icons_kit'", "fontPackage: 'mingcute_flutter'")
                            .replace('MingCuteKitRegular', 'MingCuteRegular')
                            .replace('MingCuteKitFilled', 'MingCuteFilled'))
         if write_if_changed(path, migrated):
