@@ -49,3 +49,16 @@ jobs:
           test "$COMPATIBILITY_RESULT" = success
           test "$DOCUMENTATION_RESULT" = success
           test "$PACKAGE_RESULT" = success
+
+
+  # Disabled unless explicitly opted in after WIF, pub.dev and release verification.
+  release:
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      vars.ENABLE_AUTOMATIC_PUBLISH == 'true'
+    needs: quality
+    permissions:
+      contents: write
+      id-token: write
+    uses: ./.github/workflows/publish.yml

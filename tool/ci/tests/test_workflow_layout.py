@@ -64,20 +64,33 @@ class WorkflowLayoutTest(unittest.TestCase):
                 self.assertIn('tool/upstream_status.json', line)
         self.assertNotIn('dart pub publish', text)
 
-    def test_bootstrap_has_no_automatic_publication(self):
-        self.assertNotIn('release', self.jobs)
-        self.assertFalse((WORKFLOWS / 'publish.yml').exists())
-        self.assertFalse(any(
-            'workflows/publish.yml' in p.read_text()
-            for p in WORKFLOWS.glob('*.yml')
-        ))
+    def test_automatic_publication_is_explicitly_opted_in(self):
+        self.assertIn('release', self.jobs)
+        self.assertIn("vars.ENABLE_AUTOMATIC_PUBLISH == 'true'", self.jobs['release'])
+        self.assertIn("github.event_name == 'push'", self.jobs['release'])
+        self.assertIn("github.ref == 'refs/heads/main'", self.jobs['release'])
+        self.assertIn('needs: quality', self.jobs['release'])
+        self.assertIn('uses: ./.github/workflows/publish.yml', self.jobs['release'])
+        callee = (WORKFLOWS / 'publish.yml').read_text()
+        self.assertIn("vars.ENABLE_AUTOMATIC_PUBLISH == 'true'", callee)
+        self.assertIn('environment: pub.dev', callee)
+        self.assertIn('id_token_audience: https://pub.dev', callee)
+        self.assertIn('id_token_include_email: true', callee)
+        self.assertIn('token_format: id_token', callee)
+        self.assertIn('create_credentials_file: false', callee)
+        self.assertIn('tool/ci/release.py plan --archive', callee)
+        self.assertIn('run: bash tool/ci/publish.sh', callee)
+        self.assertIn('tool/ci/release.py finalize', callee)
+        self.assertNotIn('continue-on-error', callee)
+        self.assertNotIn('credentials_json:', callee)
+        self.assertNotIn('MORPH_WIF_PROVIDER', callee)
 
     def setUp(self):
         self.caller = (WORKFLOWS / 'ci.yml').read_text()
         self.jobs = job_blocks(self.caller)
 
     def test_only_coordinator_handles_events_and_every_module_uses_same_commit(self):
-        expected = {'tests', 'compatibility', 'documentation', 'package', 'quality'}
+        expected = {'tests', 'compatibility', 'documentation', 'package', 'quality', 'release'}
         self.assertEqual(expected, set(self.jobs))
         self.assertLess(len(self.caller.splitlines()), 100)
         self.assertNotIn('dart pub', self.caller)
@@ -120,14 +133,22 @@ class WorkflowLayoutTest(unittest.TestCase):
                                         env=env, capture_output=True)
                 self.assertEqual(name is None, result.returncode == 0)
 
-    def test_quality_workflows_have_no_write_or_oidc_permissions(self):
+    def test_privileged_permissions_are_isolated_to_publication(self):
         for name, body in self.jobs.items():
-            self.assertNotIn('id-token: write', body, name)
-            self.assertNotIn('contents: write', body, name)
+            if name == 'release':
+                self.assertIn('id-token: write', body)
+                self.assertIn('contents: write', body)
+            else:
+                self.assertNotIn('id-token: write', body, name)
+                self.assertNotIn('contents: write', body, name)
         for path in WORKFLOWS.glob('*.yml'):
-            if path.name != 'upstream-sync.yml':
-                self.assertNotIn('id-token: write', path.read_text(), path.name)
-                self.assertNotIn('contents: write', path.read_text(), path.name)
+            content = path.read_text()
+            if path.name == 'publish.yml':
+                self.assertIn('id-token: write', content)
+                self.assertIn('contents: write', content)
+            elif path.name not in ('ci.yml', 'upstream-sync.yml'):
+                self.assertNotIn('id-token: write', content, path.name)
+                self.assertNotIn('contents: write', content, path.name)
 
     def test_upstream_sync_is_scheduled_data_only_and_never_publishes(self):
         text = (WORKFLOWS / 'upstream-sync.yml').read_text()
@@ -188,7 +209,7 @@ class WorkflowLayoutTest(unittest.TestCase):
             r'(?m)^    needs: documentation$',
         )
         self.assertIn('package', self.jobs['quality'])
-        self.assertNotIn('release', self.jobs)
+        self.assertIn('needs: quality', self.jobs['release'])
         self.assertIn(
             'name: All required quality checks',
             self.jobs['quality'],
@@ -202,13 +223,15 @@ class WorkflowLayoutTest(unittest.TestCase):
         self.assertIn('archive-files', text)
         self.assertIn('dart pub publish --dry-run', text)
 
-    def test_bootstrap_excludes_publish_workflow(self):
-        self.assertFalse((WORKFLOWS / 'publish.yml').exists())
-        for path in WORKFLOWS.glob('*.yml'):
-            content = path.read_text()
-            self.assertNotIn('workflows/publish.yml', content)
-            self.assertNotIn('bash tool/ci/publish.sh', content)
-            self.assertNotIn('tool/ci/release.py finalize', content)
+    def test_restored_publisher_remains_behind_quality_and_version_guards(self):
+        callee = (WORKFLOWS / 'publish.yml').read_text()
+        self.assertIn('uses: ./.github/workflows/publish.yml', self.jobs['release'])
+        self.assertIn('needs: quality', self.jobs['release'])
+        self.assertIn('tool/ci/release.py plan', callee)
+        self.assertIn('tool/ci/release.py finalize', callee)
+        self.assertIn('tool/ci/publish.sh', callee)
+        self.assertIn("if: steps.preflight.outputs.decision == 'publish'", callee)
+        self.assertNotIn('dart pub publish --force', callee)
 
     def test_each_flutter_job_checks_out_before_shared_sdk_setup(self):
         action = ROOT / '.github/actions/setup-flutter/action.yml'
