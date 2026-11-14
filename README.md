@@ -26,19 +26,17 @@ no SVG runtime or custom rendering widget is required.
 
 ## Installation
 
-Initial publication of **0.1.0** on pub.dev is pending. Until then, use a local
-checkout:
-
-```yaml
-dependencies:
-  mingcute_icons:
-    path: ../mingcute_icons
-```
-
-Once the package has been published:
+Add MingCute Icons to your Flutter project:
 
 ```bash
 flutter pub add mingcute_icons
+```
+
+Or add the dependency directly to `pubspec.yaml`:
+
+```yaml
+dependencies:
+  mingcute_icons: ^0.1.0
 ```
 
 ## Quick start
